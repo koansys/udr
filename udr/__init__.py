@@ -84,3 +84,10 @@ def guess_encoding(data, encodings=ENCODINGS):
         except UnicodeDecodeError: # pragma: no cover
             pass
     return None # pragma: no cover
+
+
+class InvalidHeaderFields(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return "{0}: invalid keys/column names".format(self.value)
