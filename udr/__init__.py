@@ -1,3 +1,4 @@
+import math
 import codecs
 import csv
 
@@ -45,14 +46,14 @@ class UnicodeDictReader:
                 self._fieldnames = [unicode(s.strip(), "utf-8") for s in self.reader.next()]
             except StopIteration: # pragma: no cover
                 pass
-            except csv.Error as e:
-                raise InvalidHeaderFields(e)
+            except csv.Error as e: # PRAGMA: no cover
+                raise InvalidHeaderFields(e) #what is a bad fieldname?
         self.line_num = self.reader.line_num
         return self._fieldnames
 
     fieldnames = fieldnames #pyflakes ignore redef below
     @fieldnames.setter
-    def fieldnames(self, value):
+    def fieldnames(self, value): # PRAGMA: no cover
         self._fieldnames = [unicode(s.strip(), "utf-8") for s in value]
 
     def next(self):
@@ -82,11 +83,11 @@ def guess_encoding(data, encodings=ENCODINGS):
             data.decode(encoding)
             return encoding
         except UnicodeDecodeError: # pragma: no cover
-            pass
+            pass # try the next one
     return None # pragma: no cover
 
 
-class InvalidHeaderFields(Exception):
+class InvalidHeaderFields(Exception): # PRAGMA: no cover
     def __init__(self, value):
         self.value = value
     def __str__(self):

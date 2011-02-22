@@ -21,13 +21,13 @@ here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.rst')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
-requires = ['nose',
-            'coverage',
-            ]
+test_requires = ['nose',
+                 'coverage',
+                 ]
 
 setup(name='udr',
-      version='0.0',
-      description='A Unicode Dict Reader',
+      version='1.0',
+      description='A Unicode Dict Reader for CSV files',
       long_description=README + '\n\n' +  CHANGES,
       classifiers=[
         "Intended Audience :: Developers",
@@ -41,12 +41,8 @@ setup(name='udr',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
-      tests_require = requires,
-      install_requires = requires,
+      tests_require = test_requires,
+      install_requires = [],
       test_suite="nose.collector",
-      entry_points = """\
-        #[console_scripts]
-        #ascript = udr.scripts.thing:main
-      """
       )
 
